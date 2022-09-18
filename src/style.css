@@ -24,14 +24,14 @@ code {
 
 .product__image-wrapper{
   height: 300px;
-  display: flex;
+  line-height: 300px;
+  text-align: center;
 }
 
-.product__image{
+.product__image-wrapper img{
   max-width: 100%;
   max-height: 300px;
-  margin: 0 auto;
-  display: block;
+  vertical-align: middle;
 }
 .product__title{
   display: block;
