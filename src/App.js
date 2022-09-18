@@ -26,7 +26,7 @@ function App() {
       setProductList(productListDefault);
     }
   };
-  const selectCategoryAndUnselectOthers = (name) => {
+  const selectOneCategoryAndUnselectOthers = (name) => {
     const updatedFilterList = filterList.map((filterItem) => {
       filterItem.isSelected = filterItem.name === name ? true : false;
       return filterItem;
@@ -41,13 +41,13 @@ function App() {
       unselectAllFilterButtons();
       filterProductsByCategory(null);
     } else {
-      selectCategoryAndUnselectOthers(name);
+      selectOneCategoryAndUnselectOthers(name);
       filterProductsByCategory(name);
     }
   };
   return (
-    <div className="App">
-      <h1>Home page</h1>
+    <div className="app">
+      <h1>E-commerce</h1>
       <Filter
         filterList={filterList}
         handleClickFilterButton={handleClickFilterButton}
