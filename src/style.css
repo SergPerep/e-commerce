@@ -46,7 +46,7 @@ p{
   flex-wrap: wrap;
 }
 
-.product {
+.products a {
   width: calc(100% / 3);
   padding: 24px;
 }

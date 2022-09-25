@@ -8,6 +8,7 @@ const ProductList = ({ productList }) => {
           key={product.id}
           alt={product.title}
           title={product.title}
+          id={product.id}
         />
       ))}
     </div>
