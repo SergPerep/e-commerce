@@ -77,7 +77,7 @@ function Home() {
     selectFilterCategory(selectedCategory);
   }, [selectedCategory]);
   return (
-    <div className="app">
+    <>
       <h1>E-commerce</h1>
       <Filter
         filterList={filterList}
@@ -85,7 +85,7 @@ function Home() {
       />
       {isLoading && <Loader />}
       {!isLoading && <ProductList productList={productList} />}
-    </div>
+    </>
   );
 }
 

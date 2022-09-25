@@ -30,8 +30,14 @@ const ProductPage = () => {
       {!isLoading && (
         <>
           <h1>{product?.title}</h1>
-          <p>{product?.desc}</p>
-          <img src={product?.image} alt="" />
+          <div className="product-details">
+            <div className="product-details__info">
+              <p>{product?.desc}</p>
+            </div>
+            <div className="product-details__image">
+              <img src={product?.image} alt="" />
+            </div>
+          </div>
         </>
       )}
     </>

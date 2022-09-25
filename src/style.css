@@ -31,7 +31,7 @@ code {
 h1{
   font-size: 36px;
   line-height: 48px;
-  margin: 16px 0;
+  margin: 36px 0 16px;
 }
 
 p{
@@ -90,4 +90,31 @@ p{
 
 .filter-button.selected{
   background-color: var(--c-black-a30);
+}
+
+/*===== PAGE LAYOUT =====*/
+.page-container{
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+/*===== PRODUCT PAGE =====*/
+.product-details{
+  margin-top: 36px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-details__info,
+.product-details__image{
+  width: calc(50% - 24px);
+}
+.product-details__image{
+  display: flex;
+  justify-content: center;
+}
+.product-details__image img{
+  max-width: 100%;
+  max-height: 70vh;
 }
