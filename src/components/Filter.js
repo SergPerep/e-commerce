@@ -5,7 +5,7 @@ const Filter = ({ filterList, handleClickFilterButton }) => {
     <div className="filter">
       {filterList.map((filterItem, index) => (
         <FilterButton
-          title={filterItem.title}
+          title={filterItem.name}
           key={index}
           isSelected={filterItem.isSelected}
           handleClickFilterButton={handleClickFilterButton}
