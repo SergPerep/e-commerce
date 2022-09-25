@@ -41,7 +41,6 @@ function Home() {
       console.error(error);
     }
   };
-
   const selectFilterCategory = (categoryName) => {
     let updatedFilterList;
     if (categoryName === "") {
@@ -75,6 +74,7 @@ function Home() {
   useEffect(() => {
     getProducts(selectedCategory);
     selectFilterCategory(selectedCategory);
+    // eslint-disable-next-line
   }, [selectedCategory]);
   return (
     <>

@@ -23,6 +23,7 @@ const ProductPage = () => {
       }
     };
     getProduct(id);
+    // eslint-disable-next-line
   }, []);
   return (
     <>
