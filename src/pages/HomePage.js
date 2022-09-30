@@ -5,7 +5,7 @@ import Loader from "../components/Loader";
 import useProducts from "../hooks/useProducts";
 import useCategories from "../hooks/useCategories";
 
-function Home() {
+function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [products, areProductsLoading] = useProducts(selectedCategory);
   const [categories, areCategoriesLoading] = useCategories();
@@ -34,4 +34,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;
