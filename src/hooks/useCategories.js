@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 const useCategories = () => {
   const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getCategories = async () => {
