@@ -1,15 +1,15 @@
 import FilterButton from "./FilterButton";
 
-const Filter = ({ filterList, handleClickFilterButton }) => {
+const Filter = ({ categories, selectedCategory, handleClickFilterButton }) => {
   return (
     <div className="filter">
-      {filterList.map((filterItem, index) => (
+      {categories.map((categoryStr, index) => (
         <FilterButton
-          title={filterItem.name}
+          title={categoryStr}
           key={index}
-          isSelected={filterItem.isSelected}
+          isSelected={categoryStr === selectedCategory}
           handleClickFilterButton={handleClickFilterButton}
-          name={filterItem.name}
+          name={categoryStr}
         />
       ))}
     </div>

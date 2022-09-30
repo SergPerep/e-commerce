@@ -1,90 +1,35 @@
 import ProductList from "../components/ProductList";
 import Filter from "../components/Filter";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loader from "../components/Loader";
+import useProducts from "../hooks/useProducts";
+import useCategories from "../hooks/useCategories";
 
 function Home() {
-  const [productList, setProductList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [filterList, setFilterList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [products, areProductsLoading] = useProducts(selectedCategory);
+  const [categories, areCategoriesLoading] = useCategories();
 
-  const getProducts = async (selectedCategory = "") => {
-    try {
-      setIsLoading(true);
-      let url;
-      if (selectedCategory === "") {
-        url = "https://fakestoreapi.com/products";
-      } else {
-        url = `https://fakestoreapi.com/products/category/${selectedCategory}`;
-      }
-      const data = await fetch(url);
-      const dataJSON = await data.json();
-      setProductList(dataJSON);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const getCategories = async () => {
-    try {
-      const data = await fetch("https://fakestoreapi.com/products/categories");
-      const dataJSON = await data.json();
-      setFilterList(
-        dataJSON.map((catStr) => ({
-          isSelected: false,
-          name: catStr,
-        }))
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const selectFilterCategory = (categoryName) => {
-    let updatedFilterList;
-    if (categoryName === "") {
-      updatedFilterList = filterList.map(
-        (filterItem) => filterItem.isSelected === false
-      );
-    } else {
-      updatedFilterList = filterList.map((filterItem) => {
-        filterItem.isSelected = filterItem.name === categoryName ? true : false;
-        return filterItem;
-      });
-    }
-    setFilterList(updatedFilterList);
-  };
-
-  const handleClickFilterButton = (categoryName) => {
-    const filterItem = filterList.find(
-      (filterItem) => filterItem.name === categoryName
-    );
-    if (filterItem.isSelected === true) {
+  const handleClickFilterButton = (categoryStr) => {
+    if (categoryStr === selectedCategory) {
       setSelectedCategory("");
     } else {
-      setSelectedCategory(categoryName);
+      setSelectedCategory(categoryStr);
     }
   };
 
-  useEffect(() => {
-    getCategories();
-  }, []);
-
-  useEffect(() => {
-    getProducts(selectedCategory);
-    selectFilterCategory(selectedCategory);
-    // eslint-disable-next-line
-  }, [selectedCategory]);
   return (
     <>
       <h1>E-commerce</h1>
-      <Filter
-        filterList={filterList}
-        handleClickFilterButton={handleClickFilterButton}
-      />
-      {isLoading && <Loader />}
-      {!isLoading && <ProductList productList={productList} />}
+      {!areCategoriesLoading && (
+        <Filter
+          categories={categories}
+          selectedCategory={selectedCategory}
+          handleClickFilterButton={handleClickFilterButton}
+        />
+      )}
+      {(areProductsLoading || areCategoriesLoading) && <Loader />}
+      {!areProductsLoading && <ProductList productList={products} />}
     </>
   );
 }
