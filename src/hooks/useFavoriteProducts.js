@@ -4,7 +4,6 @@ const useFavoriteProducts = (favoriteIds) => {
   const [favProducts, setFavProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     setIsLoading(true);
     Promise.all(
@@ -19,6 +18,7 @@ const useFavoriteProducts = (favoriteIds) => {
       .then((result) => setFavProducts(result))
       .catch((err) => setError(err))
       .finally(() => setIsLoading(false));
+    // eslint-disable-next-line
   }, []);
 
   return [favProducts, isLoading, error];
