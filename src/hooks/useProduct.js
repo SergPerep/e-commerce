@@ -1,26 +1,22 @@
 import { useState, useEffect } from "react";
+import useFetch from "./useFetch";
 const useProduct = (id) => {
   const [product, setProduct] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [data, isLoading, error] = useFetch(
+    `https://fakestoreapi.com/products/${id}`
+  );
+
   useEffect(() => {
-    const getProduct = async (id) => {
-      try {
-        setIsLoading(true);
-        const data = await fetch(`https://fakestoreapi.com/products/${id}`);
-        const dataJSON = await data.json();
-        setProduct({
-          title: dataJSON.title,
-          image: dataJSON.image,
-          desc: dataJSON.description,
-        });
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getProduct(id);
-  }, [id]);
-  return [product, isLoading];
+    if (data) {
+      const newProduct = {
+        title: data.title,
+        image: data.image,
+        desc: data.description,
+      };
+      setProduct(newProduct);
+    }
+  }, [data]);
+  return [product, isLoading, error];
 };
 
 export default useProduct;

@@ -1,8 +1,8 @@
 import Product from "./Product";
-const ProductList = ({ productList }) => {
+const ProductList = ({ products }) => {
   return (
     <div className="products">
-      {productList.map((product) => (
+      {products.map((product) => (
         <Product
           src={product.image}
           key={product.id}

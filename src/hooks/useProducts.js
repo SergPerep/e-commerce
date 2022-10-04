@@ -1,30 +1,17 @@
 import { useState, useEffect } from "react";
+import useFetch from "./useFetch";
 
 const useProducts = (selectedCategory = "") => {
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
+  const url =
+    selectedCategory === ""
+      ? "https://fakestoreapi.com/products"
+      : `https://fakestoreapi.com/products/category/${selectedCategory}`;
+  const [data, isLoading, error] = useFetch(url);
   useEffect(() => {
-    const getProducts = async (selectedCategory) => {
-      try {
-        setIsLoading(true);
-        let url;
-        if (selectedCategory === "") {
-          url = "https://fakestoreapi.com/products";
-        } else {
-          url = `https://fakestoreapi.com/products/category/${selectedCategory}`;
-        }
-        const response = await fetch(url);
-        const data = await response.json();
-        setProducts(data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getProducts(selectedCategory);
-  }, [selectedCategory]);
-  return [products, isLoading];
+    setProducts(data || []);
+  }, [data]);
+  return [products, isLoading, error];
 };
 
 export default useProducts;

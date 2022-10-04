@@ -5,6 +5,8 @@ import "./style.css";
 import HomePage from "./pages/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductPage from "./pages/ProductPage";
+import { FavoritesProvider } from "./contexts/FavoritesContext";
+import FavoritesPage from "./pages/FavoritesPage";
 
 const router = createBrowserRouter([
   {
@@ -15,13 +17,19 @@ const router = createBrowserRouter([
     path: "/product/:id",
     element: <ProductPage />,
   },
+  {
+    path: "/favorites",
+    element: <FavoritesPage />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <div className="page-container">
-      <RouterProvider router={router} />
+      <FavoritesProvider>
+        <RouterProvider router={router} />
+      </FavoritesProvider>
     </div>
   </React.StrictMode>
 );

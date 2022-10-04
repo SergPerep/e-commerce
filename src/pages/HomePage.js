@@ -4,6 +4,7 @@ import { useState } from "react";
 import Loader from "../components/Loader";
 import useProducts from "../hooks/useProducts";
 import useCategories from "../hooks/useCategories";
+import Nav from "../components/Nav";
 
 function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -20,6 +21,7 @@ function HomePage() {
 
   return (
     <>
+      <Nav />
       <h1>E-commerce</h1>
       {!areCategoriesLoading && (
         <Filter
@@ -29,7 +31,7 @@ function HomePage() {
         />
       )}
       {(areProductsLoading || areCategoriesLoading) && <Loader />}
-      {!areProductsLoading && <ProductList productList={products} />}
+      {!areProductsLoading && <ProductList products={products} />}
     </>
   );
 }

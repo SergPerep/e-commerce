@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
+import FavoriteButton from "../components/FavoriteButton";
 import Loader from "../components/Loader";
+import Nav from "../components/Nav";
 import useProduct from "../hooks/useProduct";
 
 const ProductPage = () => {
@@ -11,13 +13,15 @@ const ProductPage = () => {
       {isLoading && <Loader />}
       {!isLoading && (
         <>
+          <Nav />
           <h1>{product?.title}</h1>
           <div className="product-details">
             <div className="product-details__info">
               <p>{product?.desc}</p>
             </div>
             <div className="product-details__image">
-              <img src={product?.image} alt="" />
+              <FavoriteButton id={parseInt(id)} />
+              <img src={product?.image} alt={product?.title} />
             </div>
           </div>
         </>
