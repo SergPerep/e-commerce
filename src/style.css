@@ -85,6 +85,7 @@ p{
   height: 48px;
   cursor: pointer;
   padding: 12px;
+  background-color: transparent;
   color: var(--c-black-a60);
 }
 

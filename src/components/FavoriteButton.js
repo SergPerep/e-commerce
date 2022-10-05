@@ -16,10 +16,10 @@ const FavoriteButton = ({ id }) => {
     setFavoriteIds(updatedFavoritesIds);
   };
   return (
-    <div className="favorite-button" onClick={handleClickFavoriteIcon}>
+    <button className="favorite-button" onClick={handleClickFavoriteIcon}>
       {isFavorite && <FilledHeartIcon />}
       {!isFavorite && <EmptyHeartIcon />}
-    </div>
+    </button>
   );
 };
 
